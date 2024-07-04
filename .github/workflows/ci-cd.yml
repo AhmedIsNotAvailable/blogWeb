@@ -31,10 +31,9 @@ jobs:
 
 
       - name: Build and package
-        run: |
-          mkdir deploy  # make artifacts
-          cp -r ./* deploy/  
-
-          cd deploy/
-          zip -r flask-app.zip .  # Create a ZIP file of artifact
-          cd ..                   # come back to original directory (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-without-markdown
+          path: |
+            dist
+            !dist/**/*.md
